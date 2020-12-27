@@ -46,7 +46,7 @@ class UnknownCommandError(Exception):
 class markets:
     product: str
     shop: str
-    price: int
+    price: float
 
 
 @dataclass
@@ -129,7 +129,7 @@ class Staff:
                 elif element.tag == 'shop':
                     shop = element.text
                 elif element.tag == 'price':
-                    price = int(element.text)
+                    price = float(element.text)
 
                 if product is not None and shop is not None \
                         and price is not None:
@@ -186,7 +186,7 @@ if __name__ == '__main__':
                 # Запросить данные о товаре.
                 product = input("Название товара? ")
                 shop = input("Название магазина? ")
-                price = int(input("Стоимость товара в руб.? "))
+                price = float(input("Стоимость товара в руб.? "))
 
                 # Добавить работника.
                 staff.add(product, shop, price)
@@ -215,9 +215,9 @@ if __name__ == '__main__':
 
                 # Вывести результаты запроса.
                 if selected:
-                    for idx, markets in enumerate(selected, 1):
+                    for count, markets in enumerate(selected, 1):
                         print(
-                            '{:>4}: {}'.format(idx, markets.product)
+                            '{:>4}: {}'.format(count, markets.product)
                         )
                     logging.info(
                         f"Найден {len(selected)} товар с "
